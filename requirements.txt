@@ -1,0 +1,4 @@
+Django==1.11
+django-rest-framework #3.7.3
+scipy
+numpy

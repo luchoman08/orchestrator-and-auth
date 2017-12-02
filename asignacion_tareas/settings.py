@@ -25,7 +25,7 @@ SECRET_KEY = 't$#y25l%^acje^xn!kgj62(qm7#zbjtizfuv7&32x&82@uulas'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['tesis-backend-luchoman.c9users.io']
 
 
 # Application definition
@@ -39,7 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'modelamientoAsignaciones.apps.ModelamientoasignacionesConfig',
 ]
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
