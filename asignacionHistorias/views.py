@@ -28,8 +28,11 @@ class AsignacionPorHorasView(generics.ListCreateAPIView):
         """
         data=request.data
         serializer = AsignacionPorHorasSerializer( data=request.data)
+       
         if serializer.is_valid():
             #serializer.save()
+            asignacion = AsignacionPorHoras(serializer.validated_data)
+            fml.FabricaModeloEquilibrado(serializer.get_desarrolladores(), serializer.get_historias(), 1).solve()
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 class HistoriaViewSets(viewsets.ReadOnlyModelViewSet):

@@ -1,17 +1,9 @@
 from asignacionHistorias import models
 from . import asignacion as asig
+from . import resolventes_genericos as resol_genericos
 import numpy 
 import pulp
-from pulp import *
 
-def construirModeloLineal(asignacion):
-    """
-    Construir un modelo de programacion lineal basado en el tipo de asignacion.
-    Keyword arguments:
-    asignacion -- Asignacion dada, asignacion.Asignacion
-    """
-    if (asignacion.tipo == asig.TipoAsignacion.sencilla):
-        return 0
 
 class FabricaModeloEquilibrado:
     """
@@ -19,19 +11,16 @@ class FabricaModeloEquilibrado:
     a la semana disponibles por cada desarrollador, los puntos de las historias
     y la corresondencia entre puntos de historia y horas de trabaj
     """
-    asignacion = None
-    nombre_desarrolladores = None
-    prob = LpProblem("Problema asignacion equilibrada minimos datos", LpMinimize)
-    def __init__(self, newAsignacion):
-        self.asignacion = newAsignacion
+
+    def __init__(self, agentes, tareas, relacion_horas_puntos):
+        self.agentes = agentes
+        self.tareas = tareas
+        self.relacion_horas_puntos = relacion_horas_puntos
+        self.agentes_horas = {agente.id_externo: agente.horasDisponiblesSemana for agente in self.agentes }
+        self.tareas_horas = {tarea.id_externo: tarea.puntuacionGeneral * self.relacion_horas_puntos for tarea in self.tareas }
     
-    def initNombreDesarrolladores(self):
-        self.nombre_desarrolladores = [x.nombre for x in self.asignacion.desarrolladores]
-        return self.nombre_desarrolladores
-    def construirFuncionObjetivo(self):
-        return 0
-    def construirRestriccionesNoSobrecarga(self):
-        return 1
+    def solve(self):
+        resol_genericos.resolverProblemaEquilibrio(self.agentes_horas, self.tareas_horas)
     
 
 class FabricaModeloLinealUnicaPonderacion:

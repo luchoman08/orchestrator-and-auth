@@ -15,12 +15,12 @@ class HistoriaSimpleSerializador(serializers.ModelSerializer):
 class DesarrolladorSimpleSerializador(serializers.ModelSerializer):
     class Meta:
         model = Desarrollador
-        fields = ['id_externo', 'puntuacionGeneral']
+        fields = ['id_externo', 'horasDisponiblesSemana']
         
 class DesarrolladorSerializador(serializers.ModelSerializer):
     class Meta:
         model = modelos_genericos.Desarrollador
-        fields = ('nombre', 'horasDisponiblesSemana')
+        fields = ('id_externo', 'horasDisponiblesSemana')
 
 class ProyectoAgilSerializador(serializers.ModelSerializer):
     class Meta:
@@ -28,11 +28,18 @@ class ProyectoAgilSerializador(serializers.ModelSerializer):
         fields = ('nombre', 'fechaInicio', 'fechaFinalizacion', "correspondenciaPuntosHoras")
 
 class AsignacionPorHorasSerializer(serializers.ModelSerializer):
-    desarrolladores =  DesarrolladorSerializador(many=True, required = True)
+    desarrolladores =  DesarrolladorSimpleSerializador(many=True, required = True)
     historias =  HistoriaSimpleSerializador(many=True, required = True)
     class Meta:
         model = AsignacionPorHoras
         fields = ('historias', 'desarrolladores', 'relacion_horas_puntos' )
+        
+    def get_historias(self):
+        historias = self.validated_data.get('historias')
+        return [Historia(**historia) for historia in historias ]
+    def get_desarrolladores(self):
+        desarrolladores = self.validated_data.get('desarrolladores')
+        return [Desarrollador(**desarrollador) for desarrollador in desarrolladores ]    
         
 """
 class HistoriaSimpleSerializador(serializers.Serializer):
