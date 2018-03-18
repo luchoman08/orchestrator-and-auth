@@ -1,7 +1,6 @@
 from asignacionHistorias import models
 from . import asignacion as asig
 from . import resolventes_genericos as resol_genericos
-import numpy 
 import pulp
 import re
 
