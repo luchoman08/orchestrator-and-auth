@@ -74,7 +74,6 @@ def resolverProblemaEquilibrio(agente_horas, tarea_costo):
     for v in prob.variables():
         print(re.findall(r'\d+', v.name))
         print(v.name, "=", v.varValue)
-    
-    
     print ('El tiempo total de el solve fue:', tiempo_solve) #En segundos 
+    return prob.status,  prob.variables()    
     

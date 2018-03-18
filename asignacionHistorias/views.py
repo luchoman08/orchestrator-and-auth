@@ -11,6 +11,7 @@ from django.contrib.auth.decorators import login_required
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
+import json
 
 # Create your views here.
 
@@ -32,8 +33,8 @@ class AsignacionPorHorasView(generics.ListCreateAPIView):
         if serializer.is_valid():
             #serializer.save()
             asignacion = AsignacionPorHoras(serializer.validated_data)
-            fml.FabricaModeloEquilibrado(serializer.get_desarrolladores(), serializer.get_historias(), 1).solve()
-            return Response(serializer.data)
+            resultado_dict = fml.FabricaModeloEquilibrado(serializer.get_desarrolladores(), serializer.get_historias(), 1).solve()
+            return Response(resultado_dict)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 class HistoriaViewSets(viewsets.ReadOnlyModelViewSet):
     """

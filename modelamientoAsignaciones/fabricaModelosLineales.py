@@ -3,7 +3,7 @@ from . import asignacion as asig
 from . import resolventes_genericos as resol_genericos
 import numpy 
 import pulp
-
+import re
 
 class FabricaModeloEquilibrado:
     """
@@ -20,8 +20,17 @@ class FabricaModeloEquilibrado:
         self.tareas_horas = {tarea.id_externo: tarea.puntuacionGeneral * self.relacion_horas_puntos for tarea in self.tareas }
     
     def solve(self):
-        resol_genericos.resolverProblemaEquilibrio(self.agentes_horas, self.tareas_horas)
-    
+        pulp_status, pulp_variables = resol_genericos.resolverProblemaEquilibrio(self.agentes_horas, self.tareas_horas)
+        asignaciones_resultado = {int(agente):[] for agente in self.agentes_horas.keys()}
+        
+        for variable in pulp_variables:
+            numeros_en_nombre_variable = re.findall(r'\d+', variable.name)
+            if (len(numeros_en_nombre_variable) == 2 and variable.varValue == 1):
+                agente = int(numeros_en_nombre_variable[0])
+                tarea = int(numeros_en_nombre_variable[1])
+                asignaciones_resultado[agente].append(tarea)
+        print(asignaciones_resultado)
+        return asignaciones_resultado
 
 class FabricaModeloLinealUnicaPonderacion:
     asignacion = None
