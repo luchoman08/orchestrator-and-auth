@@ -5,12 +5,5 @@ django-bootstrap-form
 django-bootstrap3
 django-rest-swagger
 
-numpy
 psycopg2
-statistics
 pulp
-
-
-spicy
-#CyLP
-#Cbc 2.9.9
