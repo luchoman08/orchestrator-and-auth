@@ -18,13 +18,13 @@ class Tarea:
         self.costo_caracteristica = costo_caracteristica #dict
 
 costo_caracteristica = {}
-costo_caracteristica[1] = 5
+costo_caracteristica[1] = 0
 costo_caracteristica[2] = 10
 costo_caracteristica[3] = 0
 costo_caracteristica_ = {}
-costo_caracteristica_[1] = 5
+costo_caracteristica_[1] = 10
 costo_caracteristica_[2] = 0
-costo_caracteristica_[3] = 10
+costo_caracteristica_[3] = 0
 tarea = Tarea (1, costo_caracteristica)
 tarea_ = Tarea (2, costo_caracteristica_)
 
@@ -35,13 +35,13 @@ class Agente:
         self.habilidad_caracteristica = habilidad_caracteristica #dict
         
 habilidad_caracteristica = {}
-habilidad_caracteristica[1] = 5
-habilidad_caracteristica[2] = 6
-habilidad_caracteristica[3] = 5
+habilidad_caracteristica[1] = 10
+habilidad_caracteristica[2] = 1
+habilidad_caracteristica[3] = 1
 habilidad_caracteristica_ = {}
-habilidad_caracteristica_[1] = 5
-habilidad_caracteristica_[2] = 5
-habilidad_caracteristica_[3] = 6
+habilidad_caracteristica_[1] = 1
+habilidad_caracteristica_[2] = 10
+habilidad_caracteristica_[3] = 1
 agente = Agente (1, habilidad_caracteristica)
 agente_ = Agente (2, habilidad_caracteristica_)
 
@@ -74,7 +74,7 @@ caracteristicas = [caracteristica, caracteristica_, caracteristica__]
 entorno = Entorno(agentes, tareas, caracteristicas)
 
 def resolverProblemaEquilibrioConHabilidades(entorno, procurar_misma_cantidad_tareas=False):
-    """Resuelve el problema de la asignación garantizando un equilibrio en las cargas asignadas, añadiendo
+    """Resuelve el problema de la asignacion garantizando un equilibrio en las cargas asignadas, adicionando
     puntuacion de el agente en caracteristicas especificas y costos en las tareas .
     
     La escala de habilidades_caracteristica es del 0 al 10
@@ -86,7 +86,6 @@ def resolverProblemaEquilibrioConHabilidades(entorno, procurar_misma_cantidad_ta
     Args:
         agentes (list of ´´Agente´´): Agentes a asignar 
         tareas (list of ´´Tarea´´): Tareas a asignar
-
     Returns:
         (pulp.status, list): (Estado de el solver pulp, Lista de variables pulp con sus resultados)
 
@@ -109,7 +108,7 @@ def resolverProblemaEquilibrioConHabilidades(entorno, procurar_misma_cantidad_ta
         minimas_tareas = math.ceil(len(entorno.tareas) / len(entorno.agentes) )
         for agente in entorno.agentes:
             prob += pulp.lpSum([variables_asignacion[agentextarea] for agentextarea in entorno.agentesxtareas if agentextarea[0] == agente.id]) >= minimas_tareas
-    
+
     prob.writeLP("EquilibrioConHabilidades.lp")
     tiempo_solve_inicial = time() 
     prob.solve()

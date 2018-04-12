@@ -328,37 +328,37 @@ webpackJsonp(
         ]);
     },
     142: function(t, i, a) {
-      t.exports = '../../static/gestionUsuarios/plantilla/' + "2c454669bdf3aebf32a1bd8ac1e0d2d6.eot";
+      t.exports = '../../static/plantilla-backend/' + "2c454669bdf3aebf32a1bd8ac1e0d2d6.eot";
     },
     143: function(t, i, a) {
-      t.exports = '../../static/gestionUsuarios/plantilla/' + "2c454669bdf3aebf32a1bd8ac1e0d2d6.eot";
+      t.exports = '../../static/plantilla-backend/' + "2c454669bdf3aebf32a1bd8ac1e0d2d6.eot";
     },
     144: function(t, i, a) {
-      t.exports = '../../static/gestionUsuarios/plantilla/' + "a1ecc3b826d01251edddf29c3e4e1e97.woff";
+      t.exports = '../../static/plantilla-backend/' + "a1ecc3b826d01251edddf29c3e4e1e97.woff";
     },
     145: function(t, i, a) {
-      t.exports = '../../static/gestionUsuarios/plantilla/' +"e23a7dcaefbde4e74e263247aa42ecd7.ttf";
+      t.exports = '../../static/plantilla-backend/' +"e23a7dcaefbde4e74e263247aa42ecd7.ttf";
     },
     146: function(t, i, a) {
-      t.exports = '../../static/gestionUsuarios/plantilla/' + "assets/6d16f95495605c95172bc8c924720bff.svg";
+      t.exports = '../../static/plantilla-backend/' + "assets/6d16f95495605c95172bc8c924720bff.svg";
     },
     147: function(t, i, a) {
-      t.exports = '../../static/gestionUsuarios/plantilla/' + "674f50d287a8c48dc19ba404d20fe713.eot";
+      t.exports = '../../static/plantilla-backend/' + "674f50d287a8c48dc19ba404d20fe713.eot";
     },
     148: function(t, i, a) {
-      t.exports = '../../static/gestionUsuarios/plantilla/' + "674f50d287a8c48dc19ba404d20fe713.eot";
+      t.exports = '../../static/plantilla-backend/' + "674f50d287a8c48dc19ba404d20fe713.eot";
     },
     149: function(t, i, a) {
-      t.exports = '../../static/gestionUsuarios/plantilla/' + "af7ae505a9eed503f8b8e6982036873e.woff2";
+      t.exports = '../../static/plantilla-backend/' + "af7ae505a9eed503f8b8e6982036873e.woff2";
     },
     150: function(t, i, a) {
-      t.exports = 'static/gestionUsuarios/plantilla/' + "fee66e712a8a08eef5805a46892932ad.woff";
+      t.exports = '../../static/plantilla-backend/' + "fee66e712a8a08eef5805a46892932ad.woff";
     },
     151: function(t, i, a) {
-      t.exports = '../../static/gestionUsuarios/plantilla/' + "b06871f281fee6b241d60582ae9369b9.ttf";
+      t.exports = '../../static/plantilla-backend/' + "b06871f281fee6b241d60582ae9369b9.ttf";
     },
     152: function(t, i, a) {
-      t.exports = '../../static/gestionUsuarios/plantilla/' + "assets/36d50c1381fda7c71d12b6643cbe1ee0.svg";
+      t.exports = '../../static/plantilla-backend/' + "assets/36d50c1381fda7c71d12b6643cbe1ee0.svg";
     },
     155: function(t, i, a) {
       "use strict";
