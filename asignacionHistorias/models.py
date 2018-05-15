@@ -13,21 +13,11 @@ class Atributo(models.Model):
     descripcion = models.TextField(_('Descripcion del atributo'), max_length = 50, blank=False, null = False)
     fechaRegistro = models.DateTimeField(_('Fecha de registro'), auto_now=True )
    
-
-    
-    
-    
     
     
 class AsignacionPorHoras(models.Model):
     relacion_horas_puntos = models.FloatField(_('Relacion horas-puntos'), blank =False, null =False)
     fechaRegistro = models.DateTimeField(_('Fecha de registro'), auto_now=True )
-   
-   
-class AsignacionPorCaracteristicas(models.Model):
-    procurar_misma_cantidad_tareas = models.BooleanField(_('Procurar misma cantidad de tareas'), blank = False, null = False)
-    fechaRegistro = models.DateTimeField(_('Fecha de registro'), auto_now=True )
-
     
 class Historia(models.Model):
     """
@@ -39,15 +29,45 @@ class Historia(models.Model):
     asignacion_por_horas = models.ForeignKey(AsignacionPorHoras, on_delete = models.CASCADE);
     readonly_fields = ('fechaRegisro' )
 
-class Desarrollador(models.Model):
+
+
+class Desarrollador(object):
     """
     Almacena la informacion basica de un desarrollador
     """
-    id_externo = models.IntegerField(_('Id externo'), blank=False, null = False)
-    horasDisponiblesSemana = models.IntegerField(_('Horas disponibles a la semana'), default = 0, blank=False)
+    def __init__(self, **kwargs):
+        for field in ('id_externo', 'horasDisponiblesSemana'):
+            setattr(self, field, kwargs.get(field, None))
+    
+    
+
+class AsignacionResultantePorHoras:
+    def __init__( self, desarrollador = None, historias = [] ):
+        self.desarrollador = desarrollador
+        self.historias = historias
+
+class AsignacionesResultantesPorHoras:
+    def __init__( self, asignacionesResultantesPorHoras = [], errores = [] ):
+        self.asignacionesResultantesPorHoras = asignacionesResultantesPorHoras
+        self.errores = errores
+   
+class AsignacionPorCaracteristicas(models.Model):
+    procurar_misma_cantidad_tareas = models.BooleanField(_('Procurar misma cantidad de tareas'), blank = False, null = False)
     fechaRegistro = models.DateTimeField(_('Fecha de registro'), auto_now=True )
-    asignacion_por_horas = models.ForeignKey(AsignacionPorHoras, on_delete = models.CASCADE);
-    readonly_fields=('fechaRegisro' )
+
+class GrupoHistoriasRelacionadas(models.Model):
+    """
+    Grupo de historias que se asume estan relacionadas entre si
+    """
+    id_externo =  models.IntegerField(_('Id Externo'), blank=False, null=False) 
+    historias = models.ManyToManyField(Historia)
+
+class AsignacionPorCaracteristicasYGrupos(models.Model):
+    procurar_misma_cantidad_tareas = models.BooleanField(_('Procurar misma cantidad de tareas'), blank = False, null = False)
+    grupos_historias = models.ManyToManyField(GrupoHistoriasRelacionadas)
+    fechaRegistro = models.DateTimeField(_('Fecha de registro'), auto_now=True )
+    
+
     
 class DesarrolladorConAtributos(models.Model):
     """

@@ -13,8 +13,9 @@ urlpatterns = [
     url(r'^$', schema_view, name = "swagger_api_view"),
     url(r'^', include(router.urls)),
 
-    url(r'^generarAsignacionSimple/', views.AsignacionPorHorasView.as_view(),  name = 'generarAsignacionSimple'),
+    url(r'^asignacionsimple/', views.AsignacionPorHorasView.as_view(),  name = 'asignacionsimple'),
     url(r'^generarAsignacionPorCaracteristicas/', views.AsignacionPorCaractericasView.as_view(),  name = 'generarAsignacionPorCaracteristicas'),
+    url(r'^generarAsignacionGruposHistorias/', views.AsignacionPorCaracteristicasYGruposView.as_view(), name = 'generarAsignacionGruposHistorias'),
     
     url(r'^proyectoAgil/', views.ProyectoAgilListado.as_view(), name = 'proyectoAgilListado'),
     url(r'^historiasConAtributos/(?P<pk>[0-9]+)/$', views.HistoriaConAtributosDetalle.as_view(), name = 'historiaDetalle'),

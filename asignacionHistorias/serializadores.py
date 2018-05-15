@@ -12,20 +12,20 @@ class HistoriaSimpleSerializador(serializers.ModelSerializer):
         model = Historia
         fields = ['id_externo', 'puntuacionGeneral']
         
-class DesarrolladorSimpleSerializador(serializers.ModelSerializer):
-    class Meta:
-        model = Desarrollador
-        fields = ['id_externo', 'horasDisponiblesSemana']
+class DesarrolladorSimpleSerializador(serializers.Serializer):
+    id_externo = serializers.IntegerField(required = True)
+    horasDisponiblesSemana = serializers.IntegerField(required = True)
         
-class PuntuacionAtributoDesarrolladorSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = PuntuacionAtributoDesarrollador
-        fields = ('id', 'desarrollador','atributo','puntuacion')
+class PuntuacionAtributoDesarrolladorSerializer(serializers.Serializer):
+    atributo = serializers.IntegerField(required = True)
+    puntuacion = serializers.IntegerField(required = True)
+    desarrollador = serializers.IntegerField(required = True)
         
-class PuntuacionAtributoHistoriaSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = PuntuacionAtributoHistoria
-        fields = ('id', 'historia','atributo','puntuacion')
+class PuntuacionAtributoHistoriaSerializer(serializers.Serializer):
+    atributo = serializers.IntegerField(required = True)
+    puntuacion = serializers.IntegerField(required = True)
+    historia = serializers.IntegerField(required = True)
+
            
 class DesarrolladorConAtributosSerializer(serializers.ModelSerializer):
     puntuaciones_atributos = PuntuacionAtributoDesarrolladorSerializer(many = True, required = True)
@@ -38,7 +38,13 @@ class ProyectoAgilSerializador(serializers.ModelSerializer):
         model = modelos_genericos.ProyectoAgil
         fields = ('nombre', 'fechaInicio', 'fechaFinalizacion', "correspondenciaPuntosHoras")
 
+class AsignacionResultantePorHorasSerializer(serializers.Serializer):
+    desarrollador = DesarrolladorSimpleSerializador
+    historias = HistoriaSimpleSerializador(many = True)
 
+class AsignacionesResultantesPorHorasSerializer(serializers.Serializer):
+    asignaciones = AsignacionResultantePorHorasSerializer ( many = True )
+    errores = serializers.ListField( child = serializers.CharField())
 
 class AsignacionPorHorasSerializer(serializers.ModelSerializer):
     desarrolladores =  DesarrolladorSimpleSerializador(many=True, required = True)
@@ -78,15 +84,53 @@ class AsignacionPorCaracteristicasSerializer(serializers.ModelSerializer):
         return [Desarrollador(**desarrollador) for desarrollador in desarrolladores ]
     def get_puntuaciones_atributo_historia(self):
         puntuaciones_atributo_historia = self.validated_data.get('puntuaciones_atributo_historia')
-        return [PuntuacionAtributoHistoria(**puntuacion_atributo_historia) for puntuacion_atributo_historia in puntuaciones_atributo_historia]
+        return puntuaciones_atributo_historia
     def get_puntuaciones_atributo_desarrollador (self):
         puntuaciones_atributo_desarrollador = self.validated_data.get('puntuaciones_atributo_desarrollador')
-        return [PuntuacionAtributoDesarrollador(**puntuacion_atributo_desarrollador) for puntuacion_atributo_desarrollador in puntuaciones_atributo_desarrollador]
+        return puntuaciones_atributo_desarrollador
     def get_procurar_misma_cantidad_tareas(self ):
         return self.validated_data.get('procurar_misma_cantidad_tareas')
     def get_atributos(self):
         atributos = self.validated_data.get('atributos')
         return [Atributo(**atributo) for atributo in atributos]
+
+class GrupoHistoriasSimplesSerializador(serializers.Serializer):
+    id_externo = serializers.IntegerField()
+    id_historias = serializers.ListField(child=serializers.IntegerField())
+
+
+class AsignacionPorCaracteristicasGurposDeHistoriasSerializer(serializers.ModelSerializer):
+    desarrolladores =  DesarrolladorSimpleSerializador(many=True, required = True)
+    historias =  HistoriaSimpleSerializador(many=True, required = True)
+    atributos = AtributoSerializer(many=True, required = True)
+    puntuaciones_atributo_historia = PuntuacionAtributoHistoriaSerializer(many = True, required = True)
+    puntuaciones_atributo_desarrollador = PuntuacionAtributoDesarrolladorSerializer(many = True, required = True)
+    grupos_historias = GrupoHistoriasSimplesSerializador(many=True, required = True)
+    class Meta:
+        model = AsignacionPorCaracteristicas
+        fields = ('historias', 'grupos_historias', 'desarrolladores', 'atributos', 'procurar_misma_cantidad_tareas', 'puntuaciones_atributo_historia', 'puntuaciones_atributo_desarrollador' )
+        
+    def get_historias(self):
+        historias = self.validated_data.get('historias')
+        return [Historia(**historia) for historia in historias ]
+    def get_desarrolladores(self):
+        desarrolladores = self.validated_data.get('desarrolladores')
+        return [Desarrollador(**desarrollador) for desarrollador in desarrolladores ]
+    def get_puntuaciones_atributo_historia(self):
+        puntuaciones_atributo_historia = self.validated_data.get('puntuaciones_atributo_historia')
+        return puntuaciones_atributo_historia
+    def get_puntuaciones_atributo_desarrollador (self):
+        puntuaciones_atributo_desarrollador = self.validated_data.get('puntuaciones_atributo_desarrollador')
+        return puntuaciones_atributo_desarrollador
+    def get_procurar_misma_cantidad_tareas(self ):
+        return self.validated_data.get('procurar_misma_cantidad_tareas')
+    def get_atributos(self):
+        atributos = self.validated_data.get('atributos')
+        return [Atributo(**atributo) for atributo in atributos]
+    def get_grupos_historias(self):
+        grupo_historias = self.validated_data.get('grupos_historias')
+        return grupo_historias
+
 """
 class HistoriaSimpleSerializador(serializers.Serializer):
     id = serializers.IntegerField(label = _('Id historia'), required = True)
