@@ -43,14 +43,14 @@ class Desarrollador(object):
         self.horasDisponiblesSemana = horasDisponiblesSemana
     
 
-class AsignacionResultantePorHoras:
+class AsignacionResultantePorHoras(object):
     def __init__( self, desarrollador = None, historias = [] ):
         self.desarrollador = desarrollador
         self.historias = historias
 
-class AsignacionesResultantesPorHoras:
-    def __init__( self, asignacionesResultantesPorHoras = [], errores = [] ):
-        self.asignacionesResultantesPorHoras = asignacionesResultantesPorHoras
+class AsignacionesResultantesPorHoras(object):
+    def __init__( self, asignaciones = [], errores = [] ):
+        self.asignaciones = asignaciones
         self.errores = errores
    
 class AsignacionPorCaracteristicas(models.Model):

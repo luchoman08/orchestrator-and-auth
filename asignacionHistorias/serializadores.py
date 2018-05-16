@@ -40,7 +40,7 @@ class ProyectoAgilSerializador(serializers.ModelSerializer):
 
 class AsignacionResultantePorHorasSerializer(serializers.Serializer):
     desarrollador = DesarrolladorSimpleSerializador()
-    historias = HistoriaSimpleSerializador(many = True)
+    historias = HistoriaSimpleSerializador( many = True )
 
 class AsignacionesResultantesPorHorasSerializer(serializers.Serializer):
     asignaciones = AsignacionResultantePorHorasSerializer ( many = True )
@@ -58,7 +58,7 @@ class AsignacionPorHorasSerializer(serializers.ModelSerializer):
         return [Historia(**historia) for historia in historias ]
     def get_desarrolladores(self):
         desarrolladores = self.validated_data.get('desarrolladores')
-        return [Desarrollador(**desarrollador) for desarrollador in desarrolladores ]   
+        return [Desarrollador(**desarrollador) for desarrollador in desarrolladores ]
 
 class AtributoSerializer(serializers.ModelSerializer):
     class Meta:

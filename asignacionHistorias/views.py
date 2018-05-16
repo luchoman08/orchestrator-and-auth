@@ -34,7 +34,8 @@ class AsignacionPorHorasView(generics.GenericAPIView):
             #serializer.save()
             asignacion = AsignacionPorHoras(serializer.validated_data)
             resultado_dict = fml.FabricaModeloEquilibrado(serializer.get_desarrolladores(), serializer.get_historias(), 1).solve()
-            return Response(resultado_dict)
+            print (AsignacionesResultantesPorHorasSerializer(resultado_dict))
+            return Response(AsignacionesResultantesPorHorasSerializer(resultado_dict).data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class AsignacionPorCaractericasView(generics.GenericAPIView):
@@ -56,7 +57,7 @@ class AsignacionPorCaractericasView(generics.GenericAPIView):
             serializer.get_atributos(), \
             serializer.get_puntuaciones_atributo_desarrollador(), serializer.get_puntuaciones_atributo_historia(), \
             serializer.get_procurar_misma_cantidad_tareas()).solve()
-            print (AsignacionesResultantesPorHorasSerializer(resultado_dict).data)
+            print (AsignacionResultantePorHorasSerializer(resultado_dict[0]).data)
             return Response(AsignacionesResultantesPorHorasSerializer(resultado_dict))
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 

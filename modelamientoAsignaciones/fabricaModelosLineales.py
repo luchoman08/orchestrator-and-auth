@@ -20,7 +20,8 @@ class FabricaModeloEquilibrado:
         self.tareas_horas = {}
         self.tareas_dict = {}
         self.asignaciones_resultado_dict = {}
-        self.asignaciones_resultado = [] # AsignacionResultantePorHoras()
+        self.asignaciones_resultado = [] # AsignacionResultantePorHoras[]
+        self.asignaciones_resultado_object = AsignacionesResultantesPorHoras()
         for agente in self.agentes:
             self.agentes_horas[agente.id_externo] = agente.horasDisponiblesSemana
             self.agentes_dict[agente.id_externo] = agente
@@ -47,9 +48,9 @@ class FabricaModeloEquilibrado:
             asignacion_resultante.desarrollador = agente
             asignacion_resultante.historias = self.asignaciones_resultado_dict[agente]
             self.asignaciones_resultado.append(asignacion_resultante)
-            
-        print(self.asignaciones_resultado)
-        return self.asignaciones_resultado
+            self.asignaciones_resultado_object.asignaciones = self.asignaciones_resultado
+        print(self.asignaciones_resultado_object)
+        return self.asignaciones_resultado_object
 
 class FabricaModeloPorAtributos:
     """
