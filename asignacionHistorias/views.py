@@ -18,25 +18,39 @@ import json
 def index(request):
     return HttpResponse("Hello, world. You're at the polls index.")
 
-class AsignacionPorHorasView(generics.GenericAPIView):
-    def get_serializer_class(self):
-        return AsignacionPorHorasSerializer
-    def get_queryset(self):
-        return AsignacionPorHoras.objects.all()
-    def patch(self, request, format=None):
+class AsignacionPorHorasView(APIView):
+    def post(self, request, format=None):
         """
         Retornar una asignación simple basado en los datos de entrada
         """
         data=request.data
         serializer = AsignacionPorHorasSerializer( data=request.data)
-       
+        
         if serializer.is_valid():
             #serializer.save()
+            print(serializer.data)
             asignacion = AsignacionPorHoras(serializer.validated_data)
+            print(asignacion)
             resultado_dict = fml.FabricaModeloEquilibrado(serializer.get_desarrolladores(), serializer.get_historias(), 1).solve()
             print (AsignacionesResultantesPorHorasSerializer(resultado_dict))
             return Response(AsignacionesResultantesPorHorasSerializer(resultado_dict).data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 class AsignacionPorCaractericasView(generics.GenericAPIView):
     def get_serializer_class(self):

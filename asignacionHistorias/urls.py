@@ -11,7 +11,7 @@ router.register(r'generarAsignacionSimple', views.AsignacionPorHorasView.as_view
 schema_view = get_swagger_view(title='API asignación de historias')
 urlpatterns = [
     url(r'^$', schema_view, name = "swagger_api_view"),
-    url(r'^', include(router.urls)),
+    #url(r'^', include(router.urls)),
 
     url(r'^asignacionsimple/', views.AsignacionPorHorasView.as_view(),  name = 'asignacionsimple'),
     url(r'^generarAsignacionPorCaracteristicas/', views.AsignacionPorCaractericasView.as_view(),  name = 'generarAsignacionPorCaracteristicas'),

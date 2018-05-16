@@ -10,10 +10,11 @@ class HistoriaConAtributosSerializer(serializers.ModelSerializer):
 class HistoriaSimpleSerializador(serializers.ModelSerializer):
     class Meta:
         model = Historia
-        fields = ['id_externo', 'puntuacionGeneral']
+        fields = ['id_externo', 'descripcion', 'puntuacionGeneral']
         
 class DesarrolladorSimpleSerializador(serializers.Serializer):
     id_externo = serializers.IntegerField(required = True)
+    nombre = serializers.CharField(required = False, max_length = 50)
     horasDisponiblesSemana = serializers.IntegerField(required = True)
         
 class PuntuacionAtributoDesarrolladorSerializer(serializers.Serializer):
@@ -46,13 +47,10 @@ class AsignacionesResultantesPorHorasSerializer(serializers.Serializer):
     asignaciones = AsignacionResultantePorHorasSerializer ( many = True )
     errores = serializers.ListField( child = serializers.CharField())
 
-class AsignacionPorHorasSerializer(serializers.ModelSerializer):
+class AsignacionPorHorasSerializer(serializers.Serializer):
     desarrolladores =  DesarrolladorSimpleSerializador(many=True, required = True)
     historias =  HistoriaSimpleSerializador(many=True, required = True)
-    class Meta:
-        model = AsignacionPorHoras
-        fields = ('historias', 'desarrolladores', 'relacion_horas_puntos' )
-        
+    relacion_horas_puntos = serializers.IntegerField(required = True)
     def get_historias(self):
         historias = self.validated_data.get('historias')
         return [Historia(**historia) for historia in historias ]

@@ -15,19 +15,19 @@ class Atributo(models.Model):
    
     
     
-class AsignacionPorHoras(models.Model):
-    relacion_horas_puntos = models.FloatField(_('Relacion horas-puntos'), blank =False, null =False)
-    fechaRegistro = models.DateTimeField(_('Fecha de registro'), auto_now=True )
+class AsignacionPorHoras(object):
+    def __init__(self, historias = [], desarrolladores = [], relacion_horas_puntos = None ):
+        self.historias = historias
+        self.desarrolladores = desarrolladores
+        self.relacion_horas_puntos = relacion_horas_puntos
     
 class Historia(models.Model):
     """
     Almacena una historia de usuario
     """
-    id_externo = models.IntegerField(_('Id Externo'), blank=False, null=False) 
+    id_externo = models.IntegerField(_('Id Externo'), blank=False, null=False)
+    descripcion = models.CharField(_('Descripcion'), blank=True, null=True, max_length = 50)
     puntuacionGeneral = models.IntegerField(_('Puntuacion general'), blank=False, null=False,default=0)
-    fechaRegistro = models.DateTimeField(_('Fecha de registro'), auto_now=True )
-    asignacion_por_horas = models.ForeignKey(AsignacionPorHoras, on_delete = models.CASCADE);
-    readonly_fields = ('fechaRegisro' )
 
 
 
@@ -36,10 +36,11 @@ class Desarrollador(object):
     Almacena la informacion basica de un desarrollador
     """
     def fromKwargs(self, **kwargs):
-        for field in ('id_externo', 'horasDisponiblesSemana'):
+        for field in ('id_externo', 'nombre', 'horasDisponiblesSemana'):
             setattr(self, field, kwargs.get(field, None))
-    def __init__(self, id_externo=None, horasDisponiblesSemana=None):
+    def __init__(self, id_externo=None, nombre=None, horasDisponiblesSemana=None):
         self.id_externo = id_externo
+        self.nombre = nombre
         self.horasDisponiblesSemana = horasDisponiblesSemana
     
 
