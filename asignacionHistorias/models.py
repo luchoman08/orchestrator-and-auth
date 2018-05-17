@@ -26,7 +26,7 @@ class Historia(models.Model):
     Almacena una historia de usuario
     """
     id_externo = models.IntegerField(_('Id Externo'), blank=False, null=False)
-    descripcion = models.CharField(_('Descripcion'), blank=True, null=True, max_length = 50)
+    descripcion = models.CharField(_('Descripcion'), blank=True, null=True, max_length = 250)
     puntuacionGeneral = models.IntegerField(_('Puntuacion general'), blank=False, null=False,default=0)
 
 

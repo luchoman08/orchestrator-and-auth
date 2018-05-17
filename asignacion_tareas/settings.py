@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'gestionAplicaciones.apps.GestionaplicacionesConfig',
     'django.contrib.sessions',
     'rest_framework',
+    'corsheaders',
     'rest_framework.authtoken',
     'rest_framework_swagger',
     'bootstrapform',
@@ -51,6 +52,11 @@ INSTALLED_APPS = [
     
 ]
 
+CORS_ORIGIN_WHITELIST = (
+
+    'localhost:4200',
+    'tesis-backend-python-luchoman.c9users.io/'
+)
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -60,6 +66,10 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.BrokenLinkEmailsMiddleware',
+    'django.middleware.common.CommonMiddleware'
 ]
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (

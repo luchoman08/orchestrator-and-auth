@@ -35,14 +35,14 @@ Pull de asignaciones simples:
 {
 "desarrolladores":
     [
-    {"id_externo":1,"horasDisponiblesSemana":10},
-    {"id_externo":2,"horasDisponiblesSemana":10}
+    {"id_externo":1,"horasDisponiblesSemana":10, "nombre": "Luis Gerardo"},
+    {"id_externo":2,"horasDisponiblesSemana":10, "nombre": "Jeison Cardona"}
     ],
 "historias":
     [
-    {"id_externo":1,"puntuacionGeneral":3},
-    {"id_externo":2,"puntuacionGeneral":8},
-    {"id_externo":3,"puntuacionGeneral":2}
+    {"id_externo":1,"puntuacionGeneral":3, "descripcion": "historia 1"},
+    {"id_externo":2,"puntuacionGeneral":8, "descripcion": "historia 2"},
+    {"id_externo":3,"puntuacionGeneral":2, "descripcion": "historia 3"}
     ],
 "relacion_horas_puntos":1}
 
