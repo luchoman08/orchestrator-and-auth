@@ -1,0 +1,22 @@
+[[source]]
+verify_ssl = true
+url = "https://pypi.org/simple"
+name = "pypi"
+
+[packages]
+"psycopg2-binary" = "*"
+django-heroku = "*"
+gunicorn = "*"
+django = { git = 'https://github.com/django/django.git', ref = '1.11.4', editable = true }
+django-rest-framework = "*"
+django-role-permissions= "*"
+django-bootstrap-form= "*"
+django-bootstrap3= "*"
+django-rest-swagger= "*"
+django-cors-headers= "*"
+psycopg2= "*"
+pulp= "*"
+[dev-packages]
+
+[requires]
+python_version = "3.4"
