@@ -1,11 +1,7 @@
-FROM python:3.4
+FROM kennethreitz/pipenv
 ENV PYTHONUNBUFFERED 1
-RUN mkdir /code
-WORKDIR /code
-COPY Pipfile /code/
-RUN pipenv install
-RUN pipenv shell
-COPY  . /code/
+WORKDIR /app
+COPY . /app
 RUN python manage.py runserver 0.0.0.0:8000
 
 

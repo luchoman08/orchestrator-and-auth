@@ -17,6 +17,7 @@
  <form  method="POST"  class="form" role="form" action="{% url 'signup' %}">            
   {% csrf_token %}
  {{ form.username|bootstrap }}
+  {{ form.first_name|bootstrap }}
  {{ form.email|bootstrap }}
  {{ form.password|bootstrap }}
  {{ form.confirm_password|bootstrap }}

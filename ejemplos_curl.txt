@@ -31,7 +31,7 @@ Pull de puntuaciones por atributo de historias:
 
 
 Pull de asignaciones simples:
-
+ 
 {
 "desarrolladores":
     [

@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'asignacionHistorias.apps.AsignacionHistoriasConfig',
     'gestionUsuarios.apps.GestionusuariosConfig',
     'modelamientoAsignaciones.apps.ModelamientoasignacionesConfig',  
-    'gestionAplicaciones.apps.GestionaplicacionesConfig',
+    'api.apps.ApiConfig',
     'django.contrib.sessions',
     'rest_framework',
     'corsheaders',

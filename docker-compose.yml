@@ -1,8 +1,8 @@
-version: '3.5'
+version: '2'
 
 services:
 
-  angular5-dev:
+  django-dev:
     container_name: django-dev
     build:
       context: .

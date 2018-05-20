@@ -2,12 +2,14 @@ from django.shortcuts import render
 from django.http import HttpResponse,HttpResponseRedirect
 from django.template import loader
 from .models import Usuario
+from .serializers import * 
 from .forms import UsuarioForm, LoginForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.utils.translation import ugettext as _
 from django.shortcuts import redirect
-
+from rest_framework import generics
+from rest_framework.permissions import AllowAny
 # Create your views here.
 
 @login_required
@@ -57,3 +59,8 @@ def loginInterno(request):
     request.session['just_logged_out'] = False
     return HttpResponse(template.render(context, request))    
     
+
+class UserCreatePublic(generics.CreateAPIView):
+    queryset = Usuario.objects.all()
+    serializer_class = UsuarioSerializer
+    permission_classes = (AllowAny,)

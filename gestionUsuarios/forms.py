@@ -7,11 +7,12 @@ class UsuarioForm (forms.ModelForm):
     password=forms.CharField(label = _('Contraseña'), widget=forms.PasswordInput(), max_length=100)
     class Meta:
         model = Usuario
-        fields = ['username','email','password', 'confirm_password']
+        fields = ['username', 'first_name', 'email','password', 'confirm_password']
     def clean(self):
         cleaned_data = super(UsuarioForm, self).clean()
         password = cleaned_data.get("password")
         email = cleaned_data.get('email')
+        first_name = cleaned_data.get('first_name')
         username = cleaned_data.get('username')
         if email and Usuario.objects.filter(email=email).exclude(username=username).exists():
             raise forms.ValidationError(_('Ya existe un usuario con ese correo.'))
@@ -25,3 +26,4 @@ class UsuarioForm (forms.ModelForm):
 class LoginForm(forms.Form):
     username = forms.CharField(label=_('Nombre de usuario'), max_length=100, required = True)
     password = forms.CharField(label =_('Contraseña'), max_length=100, widget=forms.PasswordInput(), required = True)
+

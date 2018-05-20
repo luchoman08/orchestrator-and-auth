@@ -51,11 +51,6 @@
             ],
             "version": "==0.5.0"
         },
-        "django": {
-            "editable": true,
-            "git": "https://github.com/django/django.git",
-            "ref": "1.11.4"
-        },
         "django-bootstrap-form": {
             "hashes": [
                 "sha256:de3f7893e515352834d446c441c0cb861637f92cebbe59d8229469c6cd3dc640"

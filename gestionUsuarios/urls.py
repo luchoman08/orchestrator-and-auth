@@ -13,6 +13,7 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
+from rest_framework_jwt.views import obtain_jwt_token
 
 
 from django.conf.urls import url, include
@@ -21,8 +22,9 @@ from rest_framework_swagger.views import get_swagger_view
 schema_view = get_swagger_view(title='Pastebin API')
 urlpatterns = [
     url(r'^index/', views.index, name = 'gestionUsuariosIndex'),
-    url(r'^asdf/$', schema_view),
     url(r'^signup/', views.crearUsuarios, name = 'signup'),
+    url(r'^api/v1/signup/', views.UserCreatePublic.as_view(), name = 'sigini-api' ),
     url(r'^signin/', views.loginInterno, name = 'signin'),
     url(r'^logout/', views.logout_view, name = 'logout'),
+    url(r'^api/v1/auth/', obtain_jwt_token),
 ]

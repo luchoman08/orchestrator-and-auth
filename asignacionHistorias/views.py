@@ -11,7 +11,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.decorators import action
-
+from rest_framework.permissions import AllowAny
 import json
 
 # Create your views here.
@@ -20,12 +20,14 @@ def index(request):
     return HttpResponse("Hello, world. You're at the polls index.")
 
 class AsignacionPorHorasView(APIView):
-    @action(methods=['post'], detail=True)
+    permission_classes = (AllowAny, )
+    @action(methods=['POST'], detail=True)
     def post(self, request, format=None):
         """
         Retornar una asignación simple basado en los datos de entrada
         """
         data=request.data
+        print(data)
         serializer = AsignacionPorHorasSerializer( data=request.data)
         
         if serializer.is_valid():
@@ -55,6 +57,7 @@ class AsignacionPorHorasView(APIView):
 
 
 class AsignacionPorCaractericasView(generics.GenericAPIView):
+    
     def get_serializer_class(self):
         return AsignacionPorCaracteristicasSerializer
     def get_queryset(self):
