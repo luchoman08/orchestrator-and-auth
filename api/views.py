@@ -11,7 +11,7 @@ import json
 @api_view(['POST'])
 @permission_classes((IsAuthenticated, ))
 def generarAsignacion(request, format=None):        
-    remoteurl = 'http://task-assignment:8001/api/v1/asignacionsimple/'
+    remoteurl = 'http://user-stories-assignment:3001/uniquecostassign/'
     response = requests.post(remoteurl, json=request.data)
     return JsonResponse(json.loads(response.text))
 
