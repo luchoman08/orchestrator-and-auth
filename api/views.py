@@ -11,13 +11,13 @@ import json
 @api_view(['POST'])
 @permission_classes((IsAuthenticated, ))
 def generarAsignacion(request, format=None):        
-    remoteurl = 'http://localhost:8000/api/v1/asignacionsimple/'
+    remoteurl = 'http://task-assignment:8001/api/v1/asignacionsimple/'
     response = requests.post(remoteurl, json=request.data)
     return JsonResponse(json.loads(response.text))
 
 @api_view(['GET'])
 @permission_classes((AllowAny, ))
 def gestionGeneralProyectos(req, format=None):        
-    remoteurl = 'http://localhost:3000' + req.path.replace('/api/v1', '')
+    remoteurl = 'http://project-managers-interface:3000' + req.path.replace('/api/v1', '')
     response = requests.get(remoteurl,  params = req.GET)
     return JsonResponse(json.loads(response.text),  safe=False, status=response.status_code)
