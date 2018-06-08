@@ -29,7 +29,7 @@ ALLOWED_HOSTS = ['localhost']
 LOGIN_URL = '/gestionUsuarios/signin/'
 LOGIN_REDIRECT_URL = '/gestionUsuarios/index/'
 # Application definition
-
+APPEND_SLASH = True
 INSTALLED_APPS = [
     'rolepermissions',
     'django.contrib.admin',
