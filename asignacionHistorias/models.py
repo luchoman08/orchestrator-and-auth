@@ -83,7 +83,7 @@ class DesarrolladorConAtributos(models.Model):
         Atributo,
         through='PuntuacionAtributoDesarrollador',
         through_fields=('desarrollador', 'atributo'),
-        related_name='DesarrolladorAsignacionAtributos', null = True)
+        related_name='DesarrolladorAsignacionAtributos')
         
 class HistoriaConAtributos(models.Model):
     id_externo = models.IntegerField(_('Id Externo'), blank=False, null=False) 

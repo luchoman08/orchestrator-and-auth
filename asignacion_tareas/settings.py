@@ -25,7 +25,7 @@ SECRET_KEY = 't$#y25l%^acje^xn!kgj62(qm7#zbjtizfuv7&32x&82@uulas'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 LOGIN_URL = '/gestionUsuarios/signin/'
 LOGIN_REDIRECT_URL = '/gestionUsuarios/index/'
 # Application definition
