@@ -1,4 +1,4 @@
-from django.conf.urls import url, include 
+from django.urls import path
 from django.contrib import admin
 
 from rest_framework.routers import DefaultRouter
@@ -9,11 +9,7 @@ router = DefaultRouter()
 
 schema_view = get_swagger_view(title='API asignación de historias')
 urlpatterns = [
-
-    url(r'^asignacionsimple/', views.AsignacionPorHorasView.as_view(),  name = 'asignacionsimple'),
-    url(r'^generarAsignacionPorCaracteristicas/', views.AsignacionPorCaractericasView.as_view(),  name = 'generarAsignacionPorCaracteristicas'),
-    url(r'^generarAsignacionGruposHistorias/', views.AsignacionPorCaracteristicasYGruposView.as_view(), name = 'generarAsignacionGruposHistorias'),
-    
-
-
+    path('asignacionsimple/', views.AsignacionPorHorasView.as_view(),  name = 'asignacionsimple'),
+    path('generarAsignacionPorCaracteristicas/', views.AsignacionPorCaractericasView.as_view(),  name = 'generarAsignacionPorCaracteristicas'),
+    path('generarAsignacionGruposHistorias/', views.AsignacionPorCaracteristicasYGruposView.as_view(), name = 'generarAsignacionGruposHistorias'),
 ]

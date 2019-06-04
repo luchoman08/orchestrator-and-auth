@@ -49,6 +49,11 @@ def generar_asignacion(request):
 
 
 @api_view(['POST'])
+@permission_classes((AllowAny,))
+def generate_group_assignment(request):
+    return proxy_request_to_assignment('groupassign', request)
+
+@api_view(['POST'])
 @permission_classes((AllowAny, ))
 def generate_pair_assignment(request):
     return proxy_request_to_assignment('pairassign', request)
