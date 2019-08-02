@@ -47,8 +47,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # User defined apps
     'gestionUsuarios.apps.GestionusuariosConfig',
-
-    
+    'gestionAplicaciones.apps.GestionaplicacionesConfig',    
 ]
 APPEND_SLASH = True
 CORS_ORIGIN_ALLOW_ALL = True
