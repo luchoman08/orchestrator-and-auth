@@ -40,24 +40,7 @@ class AsignacionPorHorasView(APIView):
             return Response(AsignacionesResultantesPorHorasSerializer(resultado_dict).data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 class AsignacionPorCaractericasView(generics.GenericAPIView):
-    
     def get_serializer_class(self):
         return AsignacionPorCaracteristicasSerializer
     def get_queryset(self):
