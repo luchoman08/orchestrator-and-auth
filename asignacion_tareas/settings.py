@@ -35,7 +35,6 @@ INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
-    'asignacionHistorias.apps.AsignacionHistoriasConfig',
     'gestionUsuarios.apps.GestionusuariosConfig',
     'modelamientoAsignaciones.apps.ModelamientoasignacionesConfig',  
     'api.apps.ApiConfig',
