@@ -35,8 +35,6 @@ INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
-    'gestionUsuarios.apps.GestionusuariosConfig',
-    'modelamientoAsignaciones.apps.ModelamientoasignacionesConfig',  
     'api.apps.ApiConfig',
     'django.contrib.sessions',
     'rest_framework',
@@ -47,6 +45,9 @@ INSTALLED_APPS = [
     'bootstrap3',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # User defined apps
+    'gestionUsuarios.apps.GestionusuariosConfig',
+
     
 ]
 APPEND_SLASH = True
