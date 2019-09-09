@@ -6,3 +6,4 @@ from django.utils.translation import ugettext as _
 
 class Usuario(User):
     fecha_creacion = models.DateTimeField(_('Fecha de creación del usuario'), null = False, auto_now_add = True, blank = True )
+

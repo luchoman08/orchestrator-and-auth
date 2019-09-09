@@ -16,15 +16,15 @@ Including another URLconf
 from rest_framework_jwt.views import obtain_jwt_token
 
 
-from django.conf.urls import url, include
+from django.urls import path, include
 from . import views
 from rest_framework_swagger.views import get_swagger_view
 schema_view = get_swagger_view(title='Pastebin API')
 urlpatterns = [
-    url(r'^index/', views.index, name = 'gestionUsuariosIndex'),
-    url(r'^signup/', views.crearUsuarios, name = 'signup'),
-    url(r'^api/v1/signup/', views.UserCreatePublic.as_view(), name = 'sigini-api' ),
-    url(r'^signin/', views.loginInterno, name = 'signin'),
-    url(r'^logout/', views.logout_view, name = 'logout'),
-    url(r'^api/v1/auth/', obtain_jwt_token),
+    path('index/', views.index, name = 'gestionUsuariosIndex'),
+    path('signup/', views.crearUsuarios, name = 'signup'),
+    path('api/v1/signup/', views.UserCreatePublic.as_view(), name = 'sigini-api' ),
+    path('signin/', views.loginInterno, name = 'signin'),
+    path('logout/', views.logout_view, name = 'logout'),
+    path('api/v1/auth/', obtain_jwt_token),
 ]

@@ -1,0 +1,26 @@
+{% extends 'gestionUsuarios/base.html' %}
+{% load i18n %}
+{% load static %}
+{% load bootstrap %}
+{% load bootstrap3 %}
+
+{% block content %}
+{%if message %}
+<div class="alert alert-primary {{alert_class}}" role="alert">{{message}}</div>
+{%endif%}
+<form  method="POST"  class="form" role="form" action="{% url 'upsert-app' %}">            
+{% csrf_token %}
+{{ form|bootstrap }}
+    <div class="form-group">
+        <div class="col-sm-12">
+            <input type="submit" class="btn btn-primary" value="{% trans "Guardar" %}" />
+        </div>
+    </div>
+</form>
+{%if app and app.key == None %}
+<a style="color: white;" href="{%url 'generate-api-key' app_id=app.id%}"class="input btn btn-success" > {% trans "Solicitar API key" %} </a>
+{%else%}
+<span> API key: {{app.key.key}} </span>
+{%endif%}
+
+{% endblock  %}
