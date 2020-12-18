@@ -39,7 +39,7 @@ class ProyectoAgilSerializador(serializers.ModelSerializer):
         fields = ('nombre', 'fechaInicio', 'fechaFinalizacion', "correspondenciaPuntosHoras")
 
 class AsignacionResultantePorHorasSerializer(serializers.Serializer):
-    desarrollador = DesarrolladorSimpleSerializador
+    desarrollador = DesarrolladorSimpleSerializador()
     historias = HistoriaSimpleSerializador(many = True)
 
 class AsignacionesResultantesPorHorasSerializer(serializers.Serializer):
@@ -81,7 +81,7 @@ class AsignacionPorCaracteristicasSerializer(serializers.ModelSerializer):
         return [Historia(**historia) for historia in historias ]
     def get_desarrolladores(self):
         desarrolladores = self.validated_data.get('desarrolladores')
-        return [Desarrollador(**desarrollador) for desarrollador in desarrolladores ]
+        return [Desarrollador().fromKwargs(**desarrollador) for desarrollador in desarrolladores ]
     def get_puntuaciones_atributo_historia(self):
         puntuaciones_atributo_historia = self.validated_data.get('puntuaciones_atributo_historia')
         return puntuaciones_atributo_historia

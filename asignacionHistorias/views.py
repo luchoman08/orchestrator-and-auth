@@ -56,7 +56,8 @@ class AsignacionPorCaractericasView(generics.GenericAPIView):
             serializer.get_atributos(), \
             serializer.get_puntuaciones_atributo_desarrollador(), serializer.get_puntuaciones_atributo_historia(), \
             serializer.get_procurar_misma_cantidad_tareas()).solve()
-            return Response(resultado_dict)
+            print (AsignacionesResultantesPorHorasSerializer(resultado_dict).data)
+            return Response(AsignacionesResultantesPorHorasSerializer(resultado_dict))
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 

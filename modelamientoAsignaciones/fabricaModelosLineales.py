@@ -43,13 +43,13 @@ class FabricaModeloEquilibrado:
                 tarea = self.tareas_dict[int(numeros_en_nombre_variable[1])]
                 self.asignaciones_resultado_dict[agente].append(tarea)
         for agente in self.agentes:
-            asignacion_resultante = AsignacionResultante()
+            asignacion_resultante = AsignacionResultantePorHoras()
             asignacion_resultante.desarrollador = agente
             asignacion_resultante.historias = self.asignaciones_resultado_dict[agente]
-            self.asignaciones_resultantes.append(asignacion_resultante)
+            self.asignaciones_resultado.append(asignacion_resultante)
             
-        print(self.asignaciones_resultantes)
-        return self.asignaciones_resultantes
+        print(self.asignaciones_resultado)
+        return self.asignaciones_resultado
 
 class FabricaModeloPorAtributos:
     """

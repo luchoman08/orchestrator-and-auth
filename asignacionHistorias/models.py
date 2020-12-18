@@ -35,10 +35,12 @@ class Desarrollador(object):
     """
     Almacena la informacion basica de un desarrollador
     """
-    def __init__(self, **kwargs):
+    def fromKwargs(self, **kwargs):
         for field in ('id_externo', 'horasDisponiblesSemana'):
             setattr(self, field, kwargs.get(field, None))
-    
+    def __init__(self, id_externo=None, horasDisponiblesSemana=None):
+        self.id_externo = id_externo
+        self.horasDisponiblesSemana = horasDisponiblesSemana
     
 
 class AsignacionResultantePorHoras:
